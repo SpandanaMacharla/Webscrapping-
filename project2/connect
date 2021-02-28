@@ -1,0 +1,32 @@
+# importing sqlite3 db
+import sqlite3
+
+# definning the connect function
+def connect(dbname):
+    conn = sqlite3.connect(dbname)
+    conn.execute("CREATE TABLE IF NOT EXSISTS OYO_HOTELS(NAME TEXT, ADDRESS TEXT, PRICE INT, AMENITIES TEXT , RATING INT)")
+    print("table created successfully!")
+    connect.close()
+
+# inserting values into db
+
+def insert_into_table(dbname,values):
+    conn = sqlite3.connect(dbname)
+    insert_sql = ("INSERT INTO OYO_HOTELS(NAME, ADDRESS, PRICE, ANENITIES, RATINGS)values(?, ?, ?, ?, ?)")
+    connect.execute(insert_sql, values)
+
+    connect.comit()
+    connect.close()
+
+# getting the information from db
+
+def get_hotel_info(dbname):
+    conn = sqlite3.connect(dbname)
+    cur = conn.cursor( )
+    cur.execute("SELECT * FROM OYO_HOTELS")
+
+    table_data = cur.fetchall()
+
+    for record in table_data:
+        print(record)
+    connect.close()
